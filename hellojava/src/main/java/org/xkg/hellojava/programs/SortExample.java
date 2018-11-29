@@ -1,7 +1,5 @@
 package org.xkg.hellojava.programs;
 
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
-
 public class SortExample implements SortInterface {
 
     @Override

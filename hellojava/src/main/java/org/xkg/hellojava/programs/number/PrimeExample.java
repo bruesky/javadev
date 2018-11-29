@@ -1,4 +1,4 @@
-package org.xkg.hellojava.programs;
+package org.xkg.hellojava.programs.number;
 
 public class PrimeExample {
 
