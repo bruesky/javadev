@@ -1,4 +1,4 @@
-package org.xkg.hellojava.PrimitiveDataTypes;
+package org.xkg.hellojava.basics;
 
 import org.junit.Test;
 
