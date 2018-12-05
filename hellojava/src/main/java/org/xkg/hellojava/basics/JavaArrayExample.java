@@ -1,4 +1,4 @@
-package org.xkg.hellojava.datastructures;
+package org.xkg.hellojava.basics;
 
 public class JavaArrayExample {
 
