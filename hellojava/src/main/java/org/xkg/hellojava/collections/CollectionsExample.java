@@ -155,9 +155,6 @@ public class CollectionsExample {
         while(itr.hasNext()){
             System.out.println(itr.next());
         }
-
-
-
     }
 
 }
