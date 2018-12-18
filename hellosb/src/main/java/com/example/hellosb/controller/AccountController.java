@@ -1,6 +1,8 @@
 package com.example.hellosb.controller;
 
+import com.example.hellosb.dao.CustomerRepository;
 import com.example.hellosb.entity.Account;
+import com.example.hellosb.entity.Customer;
 import com.example.hellosb.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,14 @@ import java.util.List;
 public class AccountController {
     @Autowired
     IAccountService accountService;
+
+    @Autowired
+    private CustomerRepository repository;
+
+    @RequestMapping(value = "/testmongo",method = RequestMethod.GET)
+    public List<Customer> testMongo(){
+        return repository.findAll();
+    }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public List<Account> getAccounts(){

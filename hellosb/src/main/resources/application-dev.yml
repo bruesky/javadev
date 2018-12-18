@@ -9,8 +9,24 @@ spring:
     password: 123456
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
 
-
   jpa:
       hibernate:
         ddl-auto: update  # 第一次简表create  后面用update
       show-sql: true
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/springboot-db
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+  timeout: 30000
+
