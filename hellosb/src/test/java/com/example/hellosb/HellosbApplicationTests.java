@@ -1,5 +1,6 @@
 package com.example.hellosb;
 
+import com.example.hellosb.dao.BookRepository;
 import com.example.hellosb.dao.RedisDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +21,11 @@ public class HellosbApplicationTests {
 
     @Autowired
     RedisDao redisDao;
+
+    @Autowired
+    private BookRepository bookRepository;
+
+
     @Test
     public void testRedis(){
         redisDao.setKey("name","xxxxxxxx");
@@ -28,5 +34,15 @@ public class HellosbApplicationTests {
         logger.info(redisDao.getValue("age"));
     }
 
+    @Test
+    public void testCache(){
+        logger.info(".... Fetching books");
+        logger.info("isbn-1234 -->" + bookRepository.getByIsbn("isbn-1234"));
+        logger.info("isbn-4567 -->" + bookRepository.getByIsbn("isbn-4567"));
+        logger.info("isbn-1234 -->" + bookRepository.getByIsbn("isbn-1234"));
+        logger.info("isbn-4567 -->" + bookRepository.getByIsbn("isbn-4567"));
+        logger.info("isbn-1234 -->" + bookRepository.getByIsbn("isbn-1234"));
+        logger.info("isbn-1234 -->" + bookRepository.getByIsbn("isbn-1234"));
+    }
 }
 
