@@ -20,8 +20,6 @@ public class DatasourceDemoApplication implements CommandLineRunner {
 		SpringApplication.run(DatasourceDemoApplication.class, args);
 	}
 
-	Logger log = Logger.getLogger(DatasourceDemoApplication.class.getName());
-
 	@Autowired
 	private DataSource dataSource;
 
