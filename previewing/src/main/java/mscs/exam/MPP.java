@@ -10,10 +10,7 @@ class JustFive{
         num++;
         if (num>5)
             throw new Exception("instances are more than 5!!!");
-
     }
-
-
 }
 
 
@@ -46,9 +43,7 @@ public class MPP {
                     System.out.printf("%d,%d,%d\n",arr[i],arr[j],arr[k]);
                     return true;
                 }
-
             }
-            
         }
         return false;
     }
@@ -105,6 +100,38 @@ public class MPP {
             }
             return str;
         }
+    }
+
+    public static ArrayList<ArrayList<Integer>> permuteIteration(int[] num){
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+
+        //start from an empty list
+        result.add(new ArrayList<Integer>());
+
+        for (int i = 0; i < num.length; i++) {
+            //list of list in current iteration of the array num
+            ArrayList<ArrayList<Integer>> current = new ArrayList<ArrayList<Integer>>();
+
+            for (ArrayList<Integer> l : result) {
+                // # of locations to insert is largest index + 1
+                for (int j = 0; j < l.size()+1; j++) {
+                    // + add num[i] to different locations
+                    l.add(j, num[i]);
+
+                    ArrayList<Integer> temp = new ArrayList<Integer>(l);
+                    current.add(temp);
+
+                    //System.out.println(temp);
+
+                    // - remove num[i] add
+                    l.remove(j);
+                }
+            }
+
+            result = new ArrayList<ArrayList<Integer>>(current);
+        }
+
+        return result;
     }
 
 
@@ -175,7 +202,7 @@ public class MPP {
             justFives[i] = new JustFive();
         }
 
-        for (List<Integer> arr:permute(new int[]{1, 2, 3})
+        for (List<Integer> arr:permuteIteration(new int[]{1, 2, 3})
              ) {
             for (int i = 0; i < arr.size(); i++) {
                 System.out.print(arr.get(i));
