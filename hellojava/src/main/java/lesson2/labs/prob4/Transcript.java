@@ -1,7 +1,7 @@
 package lesson2.labs.prob4;
 import java.util.*;
 public class Transcript {
-	private List<TranscriptEntry> entries = new ArrayList<>();
+	private List<TranscriptEntry> entries;
 	public Transcript(Student student) {
 		this.entries = student.getGrades();
 	}
@@ -20,7 +20,7 @@ public class Transcript {
 					+ sp(len - te.getSection().getCourseName().length()-6) + te.getGrade());
 			sb.append("\n");
 		}
-		return sb.toString();			
+		return sb.toString();
 		
 	}
 	private String sp(int k) {
