@@ -11,9 +11,9 @@ public class Main {
 	Student tim = studentSectionFactory.createStudent("2","tim");
 	Student allen = studentSectionFactory.createStudent("3","allen");
 	Student[] students = {bob, tim, allen};
-	Section bio1 = studentSectionFactory.createSection(1,"Biology");
-	Section bio2 = studentSectionFactory.createSection(2,"Biology");
-	Section math = studentSectionFactory.createSection(3,"Mathematics");
+	Section bio1;
+	Section bio2;
+	Section math;
 	public static void main(String[] args) {
 		Main m = new Main();
 		m.readDataFromDb();
@@ -56,7 +56,13 @@ public class Main {
 		}
 		return studentNames;
 	}
+
 	private void readDataFromDb() {
+
+        bio1 = studentSectionFactory.createSection(1,"Biology");
+        bio2 = studentSectionFactory.createSection(2,"Biology");
+        math = studentSectionFactory.createSection(3,"Mathematics");
+
 		studentSectionFactory.newTranscriptEntry(bob,bio1,"A");
 		studentSectionFactory.newTranscriptEntry(bob,math,"B");
 		studentSectionFactory.newTranscriptEntry(tim,bio1,"B+");
