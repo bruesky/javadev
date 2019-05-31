@@ -19,6 +19,10 @@ public class Order {
         return orderAmount;
     }
 
+    public double getProfit(double commision){
+        return this.orderAmount*commision;
+    }
+
     public LocalDate getOrderDate() {
         return orderDate;
     }

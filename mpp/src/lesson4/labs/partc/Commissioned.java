@@ -23,7 +23,7 @@ public class Commissioned extends Employee {
         for (Order order:
              orders) {
             if (order.getOrderDate().getYear()==year&&order.getOrderDate().getMonthValue()+1==month)
-            sum+=commision*order.getOrderAmount();
+            sum+=order.getProfit(commision);
         }
         return sum;
     }
