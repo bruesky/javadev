@@ -1,6 +1,6 @@
 package lesson5.lab.prob1;
 
-public class CannotQuack implements QuackBehavior {
+public class MuteQuack implements QuackBehavior {
     @Override
     public void quack() {
         System.out.println("cannot quack");
