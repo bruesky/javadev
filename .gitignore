@@ -1,0 +1,10 @@
+\.project
+
+bin/
+
+\.classpath
+
+\.settings
+
+\.vscode
+.metadata/
