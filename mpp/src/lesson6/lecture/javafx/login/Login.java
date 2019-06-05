@@ -57,7 +57,6 @@ public class Login extends Application {
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
         hbBtn.getChildren().add(btn);
         grid.add(hbBtn, 1, 4);
-
         final Text actiontarget = new Text();
         grid.add(actiontarget, 1, 6);
 		btn.setOnAction(new EventHandler<ActionEvent>() {

@@ -38,7 +38,11 @@ import javafx.scene.text.Text;
  
 public class FXMLExampleController {
     @FXML private Text actiontarget;
-    
+
+    public Text getActiontarget() {
+        return actiontarget;
+    }
+
     @FXML protected void handleSubmitButtonAction(ActionEvent event) {
         actiontarget.setText("Sign in button pressed");
     }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.14705882352941177" layoutX="68.0" layoutY="88.0" orientation="VERTICAL" prefHeight="444.0" prefWidth="514.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="512.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="288.0" prefWidth="512.0">
+               <children>
+                  <SplitPane dividerPositions="0.26262626262626265" layoutX="-4.0" layoutY="-4.0" prefHeight="381.0" prefWidth="522.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <TreeView layoutX="7.0" layoutY="6.0" prefHeight="195.0" prefWidth="123.0" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="287.0" prefWidth="306.0">
+                           <children>
+                              <Button layoutX="138.0" layoutY="134.0" mnemonicParsing="false" text="Button" />
+                              <TextField layoutX="138.0" layoutY="56.0" />
+                              <PasswordField layoutX="138.0" layoutY="92.0" />
+                              <Label layoutX="59.0" layoutY="60.0" text="Label" />
+                              <Label layoutX="59.0" layoutY="96.0" text="Label" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

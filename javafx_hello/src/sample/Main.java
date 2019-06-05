@@ -15,23 +15,22 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+    private Stage primaryStage;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        AnchorPane root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        Image image = new Image("sample/library.jpg" , 400, 300, false, false);
+        this.primaryStage = primaryStage;
 
-        VBox imageHolder = new VBox();
-        // simply displays in ImageView the image as is
-        ImageView iv = new ImageView();
-        iv.setImage(image);
-        imageHolder.getChildren().add(iv);
-        imageHolder.setAlignment(Pos.CENTER);
-        root.getChildren().add(imageHolder);
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 800, 600));
+        // Load root layout from fxml file.
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("MainFrame.fxml"));
+        AnchorPane root = (AnchorPane) loader.load();
+        Scene scene = new Scene(root,800,500);
+//        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        primaryStage.setScene(scene);
         primaryStage.show();
 
+        MainFrameController controller = loader.getController();
+        controller.setMainApp(this);
     }
 
 

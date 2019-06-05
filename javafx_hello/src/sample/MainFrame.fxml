@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.MainFrameController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <SplitPane dividerPositions="0.11847389558232932" focusTraversable="true" layoutX="0.0" layoutY="0.0" orientation="VERTICAL" prefHeight="500.0" prefWidth="800.0">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <HBox layoutX="-1.0" layoutY="0.0" prefHeight="56.0" prefWidth="798.0">
+              <children>
+                <Label alignment="CENTER" contentDisplay="LEFT" prefHeight="56.0" prefWidth="798.0" text="Library System">
+                  <font>
+                    <Font size="28.0" />
+                  </font>
+                </Label>
+              </children>
+            </HBox>
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <SplitPane dividerPositions="0.17336683417085427" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="436.0" prefWidth="798.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                  <children>
+                    <VBox fx:id="vbox" layoutX="0.0" layoutY="0.0" prefHeight="434.0" prefWidth="135.0" />
+                  </children>
+                </AnchorPane>
+                <AnchorPane fx:id="anchorPaneMain" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+              </items>
+            </SplitPane>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+</AnchorPane>
