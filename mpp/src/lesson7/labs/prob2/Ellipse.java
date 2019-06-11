@@ -1,6 +1,6 @@
 package lesson7.labs.prob2;
 
-public class Ellipse implements Polygon {
+public class Ellipse implements ClosedCurve {
     private double a;
     private double E;
 
@@ -10,7 +10,7 @@ public class Ellipse implements Polygon {
     }
 
     @Override
-    public double[] getSides() {
-        return new double[]{4*a*E};
+    public double computePerimeter() {
+        return 4*a*E;
     }
 }
