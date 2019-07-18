@@ -62,4 +62,11 @@ public class WaitingForToken extends State
 		parser.append(new Multiply());
 	}
 	
+	@Override
+	public void leftBracket()
+	{
+		// System.out.println("\"Waiting For Token\" state reacting to left bracket");
+		switchTo(StatePool.States.parsingCell);		
+	}
+
 }

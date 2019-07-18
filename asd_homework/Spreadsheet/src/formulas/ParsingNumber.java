@@ -32,6 +32,11 @@ public class ParsingNumber extends State
 		switchTo(StatePool.States.waitingForToken);
 	}
 	
+	@Override
+	public void leftBracket()
+	{
+		switchTo(StatePool.States.parsingCell);		
+	}
 	
 	public void add()
 	{

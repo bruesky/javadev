@@ -9,6 +9,7 @@ public class StatePool
 		waitingForToken,
 		parsingNumber,
 		parsingText,
+		parsingCell,
 		end
 	}
 	
@@ -26,6 +27,7 @@ public class StatePool
 		waitingForToken = new WaitingForToken(parser);
 		parsingNumber = new ParsingNumber(parser);
 		parsingText = new ParsingText(parser);
+		parsingCell = new ParsingCell(parser);
 		end = new End(parser);
 	}
 	
@@ -44,6 +46,8 @@ public class StatePool
 			requested = parsingNumber;
 		else if (name == States.parsingText)
 			requested = parsingText;
+		else if (name == States.parsingCell)
+			requested = parsingCell;
 		else 
 			requested = end;
 			

@@ -7,26 +7,44 @@ import java.util.ListIterator;
 
 public class Parser
 {
+	private Director director = null;							// The Director using this Parser
 	private String formula = null;								// The string specifying the formula
-	private List<Contents> elements = new ArrayList<Contents>();	// The list of elements created from decoding the formula
+	private List<Contents> elements = new ArrayList<Contents>();// The list of elements created from decoding the formula
 	private Contents formulaObject = null;						// The one element holding the executable formula objects
-	
+	private int index = 0;										// Index to parse the formula String
 
 	private StatePool pool = null;								// The pool that builds the State objects
 	private State current = null;								// The current State of this Parser
 	
-	public Parser(String form)
+	public Parser(Director dir, String form)
 	{
+		director = dir;
 		formula = form;
 		pool = new StatePool(this);
 		current = pool.getInitialState();
 	}
 	
-	public Parser(Cell cell)
+	public Parser(Director dir, Cell cell)
 	{
-		this(cell.getFormulaString());
+		this(dir, cell.getFormulaString());
 		buildElements();
 		cell.setContent(formulaObject);
+	}
+	
+	public Parser(String form, Director dir)					// This is the constructor we use for expressions within parenthesis
+	{
+		this(dir, form);
+		buildElements();
+	}
+	
+	public Contents getFormulaObject()
+	{
+		return formulaObject;
+	}
+	
+	Director getDirector()
+	{
+		return director;
 	}
 	
 	/*
@@ -37,10 +55,12 @@ public class Parser
 	
 	public Element buildElements()
 	{
+		// System.out.println("buildElements() for: " + formula);	
+		
 		// Perform the parsing here:
-		for (int i = 0; i < formula.length(); i++)
+		for (index = 0; index < formula.length(); index++)
 		{
-			char c = formula.charAt(i);
+			char c = formula.charAt(index);
 			if (Character.isDigit(c))
 				current.numeric(c);
 			else if (c == '.')
@@ -52,11 +72,19 @@ public class Parser
 			else if (c == '"')
 				current.quote();
 			else if (c == '[')
+			{
+				// System.out.println("Parser just found a left bracket");
 				current.leftBracket();
+			}
 			else if (c == ']')
 				current.rightBracket();
 			else if (c == '(')
-				current.leftParenthesis();
+			{
+				index++;														// Skip the '('
+				Contents innerContents = buildParenthesisElements();			// Build objects between parenthesis
+				if (innerContents != null)										// If we've built Contents objects
+					append(innerContents);										// Append them to our elements
+			}
 			else if (c == ')')
 				current.rightParenthesis();
 			else if (c == '+')
@@ -74,76 +102,111 @@ public class Parser
 		
 		current.endString();
 		
+		// showElements();
+		
 		assembleElements();
 		
 		return formulaObject;
 	}
 	
+	public Contents buildParenthesisElements()
+	{
+		Contents innerFormulaObject = null;							// The resulting object of our parsing
+		StringBuilder parenthesisContents = new StringBuilder();	// The string of characters in-between the '(' and ')'
+		Boolean doneParsing = false;								// We're done when we've encountered the matching ')'
+		int leftParenthesisCount = 1;								// If we're here that's because there was one left parenthesis
+		int rightParenthesisCount = 0;
+		
+		while (index < formula.length() && !doneParsing)			// Get to next 
+		{
+			char d = formula.charAt(index);
+			if (d == '(')
+				leftParenthesisCount++;
+			else if (d == ')')
+			{
+				rightParenthesisCount++;
+				if (rightParenthesisCount == leftParenthesisCount)
+					doneParsing = true;	
+			}
+			
+			if (!doneParsing)
+				index++;			
+			parenthesisContents.append(d);
+		}
+		
+		if (doneParsing)
+		{
+			Parser innerParser = new Parser(parenthesisContents.toString(), director);	// Get another parser to extract the Contents objects
+			innerFormulaObject = innerParser.getFormulaObject();	// This is the root of what this parser has built, probably an operator
+		}
+		
+		return innerFormulaObject;
+	}
+	
 	public Element assembleElements()
 	{
-		// Sprint 6: Still reduced functionality, but doing more...
-		// ...decoding and executing formulas like: "34 * 2 + 1 + 6 / 3", as well as "Some text"
+		// Sprint 8: decoding and executing formulas like: "34 * 2 + 1 * 5 + [1,4] / 3", as well as "Some text"
 		// We'll end up with either one text string, one numerical value, or the root of a tree of operators and operands
 		
-		if (elements.size() > 0)
-			if (elements.get(0).isText())									// For now, if there is some text, then that's all there is
-				formulaObject = elements.get(0);
-			else															// Other than text will be numbers, operators, and references
-			{
-				ListIterator<Contents> items = elements.listIterator();		// Iterator on the elements
-				Contents newItem = null;									// The item from the list we're inspecting--operand or operator
-				Contents operand = null;									// The operand we find in the list of elements
-				NumericalOperator currentOperator = null;					// The operator we're currently adding onto
-				NumericalOperator newOperator = null;						// The new operator we're finding in the list
-				Contents root = null;										// The root of the overall tree of elements
-				
-				while (items.hasNext())										// While list has more items
-				{
-					newItem = items.next();									// get the operand
-					if (newItem.isNumericalValue())							// Is that new item a numerical value?
-					{
-						operand = newItem;									// This new item is our operand
-						if (currentOperator != null)						// if we're already having an operator
-							currentOperator.append(operand);				// ...append operand to it
-						else 												// must be first iteration: we don't even have an operator yet
-							{
-								if (!items.hasNext())						// If it is the end of the list
-									root = operand;							// That's it! there's just one number in that list
-								else
-								{
-									newItem = items.next();					// Get next item
-									if (newItem.isOperator())				// Should be an operator
-									{
-										currentOperator = (NumericalOperator) newItem;	// ...the current one
-										newOperator = currentOperator;		// As this is the first and only operator, it also is the new one
-										currentOperator.append(operand);	// Put the operand in the operator
-									}
-									// If that wasn't an operator, we'll silently skip that element--not supposed to be here
-								}
-							}
-						if (currentOperator != null)
-							root = currentOperator;							// If there is a current operator, it's the root
-					}
-					else if (newItem.isOperator())							// If this is an operator		
-					{
-						newOperator = (NumericalOperator) newItem;			// Make it the new one
-						if (newOperator != currentOperator)					// If new operator is different from the current one
-						{
-							if (currentOperator != null)					// If there already is a current operator...
-								newOperator.append(currentOperator);		// ...append it to the new one
-							currentOperator = newOperator;					// New operator now becomes the current one
-							root = currentOperator;							// and the current operator is the root
-						}
-					}
-					
-				} 
-				if (root != null)											// If we've put a numerical value or an operator there...
-					formulaObject = root;									// ...then it's our final formula object
-			}	
+		Contents operand = null;									// The operand we find in the list of elements
+		NumericalOperator currentOperator = null;					// The operator we're currently adding onto
+		NumericalOperator emptyOperator = null;						// An empty operator found in the list of elements
+		Contents root = null;										// The root of the overall tree of elements
+		Contents newItem = null;									// The item from the list we're inspecting
+		boolean done = false;
+	 	ListIterator<Contents> items = elements.listIterator();		// The items that came our of our parsing
+
+	 	while (!done && items.hasNext())
+	 	{
+	 		newItem = items.next();
+	 		
+	 		if (newItem.isText())
+	 		{
+	 			root = newItem;
+	 			done = true;
+	 		}
+	 		else if (newItem.isEmptyOperator())
+	 		{
+	 			emptyOperator = (NumericalOperator) newItem;
+	 			if (operand != null)
+	 			{
+	 				if (emptyOperator != operand)
+	 				{
+	 					currentOperator = emptyOperator;
+	 					currentOperator.append(operand);
+	 					operand = currentOperator;
+	 					root = operand;
+	 				}
+	 				else if (emptyOperator == currentOperator)		// Do nothing, Another operand is probably coming
+	 					;
+	 			}
+	 			else
+	 				System.out.println("Empty Numerical Operator but no operand: " + emptyOperator.formula());											
+	 				// Ignore empty operator: invalid entry		
+	 		}
+	 		else 
+	 			if (newItem.isOperand())
+	 			{
+		 			if (currentOperator != null)
+		 			{
+		 				currentOperator.append(newItem);
+		 				operand = currentOperator;
+		 			}
+		 			else
+		 			{
+		 				operand = newItem;
+		 				root = operand;
+		 			}
+	 			}
+	 			else
+	 				System.out.println("No Text nor empty operator nor operand: " + newItem.formula());													// Ignore that item: probably a mistake
+	 	}
+		formulaObject = root;
+		//System.out.println("FormulaObject: "+formulaObject.formula());
 		
 		return formulaObject;
 	}
-	
+
 	
 	public void switchToState(StatePool.States name)
 	{
@@ -153,13 +216,18 @@ public class Parser
 	
 	public void append(Contents contents)
 	{
-		//System.out.println("Parser.append("+contents.formula()+")");
 		elements.add(contents);
+	}
+	
+	public void showElements()
+	{
+		ListIterator<Contents> items = elements.listIterator();	
+		System.out.println("Showing " + elements.size() + " Elements");
+		while (items.hasNext())
+			System.out.println("    <" + items.next().formula() + ">");
 	}
 	
 	// Events injected by other states:
 	public void numeric(char a) { current.numeric(a); }
-	public void dot() { current.dot(); }
-
-	
+	public void dot() { current.dot(); }	
 }

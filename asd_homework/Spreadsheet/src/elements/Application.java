@@ -10,6 +10,7 @@ public class Application
 		Director director = new Director(spreadsheet);		// Give it to the facade
 
 		director.buildSample();								// Build sample cells, for testing
+		//director.buildSmallSample();						// Build a few cells, for testing
 
 		System.out.println(director.contents());			// Quick view of contents
 		System.out.println(director.examine());				// Quick view of formulas
