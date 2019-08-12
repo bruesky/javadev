@@ -21,7 +21,8 @@ public class QuickSort2 extends Sorter {
 
     private  void quickSort(int[] arr, int l, int r) {
         if (l < r) {
-            swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
+            int pivotPos = medianOfThree(arr,l,r);
+            swap(arr, pivotPos, r);
 
             int less = l-1;
             int more = r;

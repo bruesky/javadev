@@ -1,5 +1,7 @@
 package cs435;
 
+import java.util.*;
+
 public class lab5 {
 
     // lim log(n)/n = 0 log(n) is o(n)
@@ -57,10 +59,43 @@ public class lab5 {
         arr[j] = tmp;
     }
 
+    public static void subSetSum(List<Integer> arr,int startIndex, int sum, int target
+            ,List<Integer> arrayList,Set<List<Integer>> ret){
+        if (sum==target||startIndex==arr.size()){
+            if (sum==target)
+                ret.add(arrayList);
+            return;
+        }
+
+        ArrayList<Integer> list1 = new ArrayList<>();
+        ArrayList<Integer> list2 = new ArrayList<>();
+        list1.addAll(arrayList);
+        list2.addAll(arrayList);
+        list2.add(arr.get(startIndex));
+        subSetSum(arr,startIndex+1,sum,target,list1,ret);
+        subSetSum(arr,startIndex+1,sum+arr.get(startIndex),target,list2,ret);
+    }
+
+    public static Set<List<Integer>> findSubsetSum(List<Integer> arr, int target){
+
+        Set<List<Integer>> ret = new HashSet<>();
+        if (target==0)
+            return ret;
+
+        subSetSum(arr,0,0,target,new ArrayList<>(),ret);
+        if (ret.size()>0)
+            return ret;
+        else
+            return null;
+    }
+
     public static void main(String[]args){
-//        System.out.println(findAnElement(new int[]{0,1}));
-        int[] arr = new int[]{1,3,2,6,5,4,7,9,8};
-        qsort(arr);
-        lab4.printArray(arr);
+//        System.out.println(findAnElement(new int[]{-1,1,2,3,6}));
+        System.out.println(findSubsetSum(Arrays.asList(1, 3, 9, 4, 8, 5) ,4));
+
+
+//        int[] arr = new int[]{1,3,2,6,5,4,7,9,8};
+//        qsort(arr);
+//        lab4.printArray(arr);
     }
 }

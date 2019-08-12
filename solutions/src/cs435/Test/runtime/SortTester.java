@@ -14,7 +14,7 @@ public class SortTester {
 	private final String PACKAGE = "cs435.Test.sortroutines";
 	private final String FILENAME = new File(this.getClass().getResource("../sorters_to_be_run.txt").getPath()).getPath();
 			//"../sorters_to_be_run.txt";
-	private final int[] ARRAY_SIZES = {50000,100000,400000, 500000}; //only four different sizes allowed
+	private final int[] ARRAY_SIZES = {5000,10000,40000, 50000}; //only four different sizes allowed
 	private final int NUM_TESTS = 40;
 	private int numSortRoutines = 0;
 	private int[][][] testArrays;
