@@ -1,0 +1,5 @@
+No, it doesn't make any sense.
+First, there is a private variable(radius) in superclass(Cylinder), it
+cannot be extended by subclass(Circle).
+Second,  a Circle don't have the height property, there is no use to 
+extend from Cylinder.

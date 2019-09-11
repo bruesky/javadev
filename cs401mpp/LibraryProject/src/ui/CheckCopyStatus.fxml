@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="msgLabel" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.CheckCopyStatusController">
+  <children>
+      <Button fx:id="btnSearchBook" layoutX="341.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#btnClick" text="Search Book" />
+      <TextField fx:id="isbn" layoutX="136.0" layoutY="33.0" />
+      <Label layoutX="74.0" layoutY="36.0" text="ISBN">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="msgLabel" layoutX="105.0" layoutY="67.0" prefHeight="45.0" prefWidth="500.0" textFill="RED">
+         <font>
+            <Font size="22.0" fx:id="x1" />
+         </font>
+      </Label>
+      <TableView fx:id="tableBookCopy" layoutX="54.0" layoutY="116.0" prefHeight="274.0" prefWidth="522.0">
+        <columns>
+            <TableColumn fx:id="tb_isbn" prefWidth="89.0" text="ISBN" />
+          <TableColumn fx:id="tb_title" prefWidth="127.0" text="Title" />
+          <TableColumn fx:id="tb_num" prefWidth="72.0" text="Copy NO." />
+            <TableColumn fx:id="tb_status" prefWidth="161.0" text="Due back date" />
+            <TableColumn fx:id="tb_mem" prefWidth="72.0" text="Member" />
+        </columns>
+      </TableView>
+  </children>
+</AnchorPane>

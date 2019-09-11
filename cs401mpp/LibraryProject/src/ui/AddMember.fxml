@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="483.0" prefWidth="613.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.AddMemberController">
+  <children>
+    <Button fx:id="btnAddMemer" layoutX="239.0" layoutY="317.0" mnemonicParsing="false" onMouseClicked="#btnAddMemberClick" text="save" />
+    <Label alignment="CENTER" layoutX="4.0" layoutY="6.0" prefHeight="32.0" prefWidth="216.0" text="Add a member">
+      <font>
+        <Font size="22.0" fx:id="x1" />
+      </font>
+    </Label>
+    <GridPane layoutX="38.0" layoutY="59.0" prefWidth="515.0">
+      <children>
+        <Label text="member id" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label text="first name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label text="last name" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="memberId" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <TextField fx:id="firstName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="lastName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="street" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Label text="city" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField fx:id="street" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <TextField fx:id="city" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Label text="state" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <Label text="zip" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+        <TextField fx:id="state" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <TextField fx:id="zip" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Label text="tel number" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+        <TextField fx:id="telNumber" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="148.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="367.0" minWidth="10.0" prefWidth="367.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <Label fx:id="msgLabel" font="$x1" layoutX="38.0" layoutY="363.0" prefHeight="45.0" prefWidth="561.0" text="" textFill="RED" />
+  </children>
+</AnchorPane>

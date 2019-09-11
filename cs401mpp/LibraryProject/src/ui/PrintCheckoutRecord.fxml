@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="513.0" prefWidth="627.0" scaleX="1.0" scaleY="1.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PrintCheckoutRecordController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Label fx:id="msgLabel" layoutX="35.0" layoutY="403.0" prefHeight="45.0" prefWidth="500.0" text="" textFill="RED">
+      <font>
+        <Font size="22.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Button fx:id="printBtn" layoutX="327.0" layoutY="52.0" mnemonicParsing="false" onMouseClicked="#btnPrintCheckoutRecordClick" text="Print" />
+    <Label fx:id="title" alignment="CENTER" font="$x1" layoutX="19.0" layoutY="14.0" prefHeight="32.0" prefWidth="230.0" text="Print Checkout Record" />
+    <Label fx:id="memberIdLabel" layoutX="48.0" layoutY="56.0" text="member ID" />
+    <TextField fx:id="memberId" layoutX="134.0" layoutY="52.0" />
+      <TextArea fx:id="checkoutRecord" layoutX="14.0" layoutY="86.0" prefHeight="255.0" prefWidth="483.0" />
+  </children>
+</AnchorPane>
