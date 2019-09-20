@@ -5,13 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>edu.mum.cs</groupId>
-  <artifactId>First</artifactId>
+  <artifactId>Ajax</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <modules>
-  </modules>
-  <packaging>pom</packaging>
+  <packaging>war</packaging>
 
-  <name>First Maven Webapp</name>
+  <name>Ajax Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -34,19 +32,10 @@
       <artifactId>javax.servlet-api</artifactId>
       <version>4.0.1</version>
     </dependency>
-
-    <!-- https://mvnrepository.com/artifact/jstl/jstl -->
-    <dependency>
-      <groupId>jstl</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-    </dependency>
-
-
   </dependencies>
 
   <build>
-    <finalName>First</finalName>
+    <finalName>Ajax</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
