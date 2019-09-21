@@ -10,7 +10,7 @@ function updateGuests() {
 		"type": "post",
 		"data": {
         	"first": first,
-                "last": last
+            "last": last
 		}
     }).done(displayGuests);
 }

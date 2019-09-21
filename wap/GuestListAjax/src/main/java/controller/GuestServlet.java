@@ -23,8 +23,7 @@ public class GuestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher view = request.getRequestDispatcher("guests.jsp");
-        view.forward(request, response);;
-
+        view.forward(request, response);
     }
 
     @Override
@@ -51,7 +50,7 @@ public class GuestServlet extends HttpServlet {
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        out.write(JSONguests);        
+        out.write(JSONguests);
     }
 
 
