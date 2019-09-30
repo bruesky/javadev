@@ -5,14 +5,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.xiangkui.entity.Student;
 
-import java.util.List;
-
 
 public class TestHibernate {
 
     public static void main(String[] args){
         SessionFactory sessionFactory = new Configuration()
-                                        .configure("hibernate.cfg.xml")
+                                        .configure("hibernate01.cfg.xml")
                                         .addAnnotatedClass(Student.class)
                                         .buildSessionFactory();
 
