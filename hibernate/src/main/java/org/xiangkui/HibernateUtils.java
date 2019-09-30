@@ -2,7 +2,9 @@ package org.xiangkui;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.xiangkui.day02.Staff;
 
 public class HibernateUtils {
     public static final Configuration cfg;
@@ -16,4 +18,17 @@ public class HibernateUtils {
     public static Session openSession(){
         return sf.openSession();
     }
+
+    public static Session getSession(){
+        return sf.getCurrentSession();
+    }
+
+    public static void exec(ExecInterface execInterface){
+        Session session = HibernateUtils.openSession();
+        Transaction transaction = session.beginTransaction();
+        execInterface.exec(session);
+        transaction.commit();
+        session.close();
+    }
+
 }
