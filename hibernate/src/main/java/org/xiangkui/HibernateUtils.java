@@ -24,11 +24,10 @@ public class HibernateUtils {
     }
 
     public static void exec(ExecInterface execInterface){
-        Session session = HibernateUtils.openSession();
+        Session session = HibernateUtils.getSession();
         Transaction transaction = session.beginTransaction();
         execInterface.exec(session);
         transaction.commit();
-        session.close();
     }
 
 }

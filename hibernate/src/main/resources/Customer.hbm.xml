@@ -24,4 +24,52 @@
         <property name="lastName" column="lname"></property>
 
     </class>
+
+    <class name="org.xiangkui.day03.Client" table="client">
+        <id name="id" column="id">
+            <generator class="native"></generator>
+        </id>
+        <!--cascade级联   inverse放弃外键维护权     -->
+        <property name="name" column="name"></property>
+        <set name="relatives" cascade="save-update,delete" inverse="true">
+            <key column="cid"></key>
+            <one-to-many class="org.xiangkui.day03.Relative"></one-to-many>
+        </set>
+    </class>
+
+    <class name="org.xiangkui.day03.Relative" table="relative">
+        <id name="id" column="id">
+            <generator class="native"></generator>
+        </id>
+
+        <property name="name" column="name"></property>
+        <many-to-one name="client" class="org.xiangkui.day03.Client" column="cid" cascade="save-update"></many-to-one>
+    </class>
+
+    <class name="org.xiangkui.day03.Role" table="role">
+        <id name="id" column="id">
+            <generator class="native"></generator>
+        </id>
+
+        <property name="name" column="name"></property>
+        <set name="users" table="user_role" inverse="true">
+            <key column="rid"></key>
+            <many-to-many class="org.xiangkui.day03.User" column="uid"></many-to-many>
+        </set>
+    </class>
+
+    <class name="org.xiangkui.day03.User" table="user">
+        <id name="id" column="id">
+            <generator class="native"></generator>
+        </id>
+
+        <property name="name" column="name"></property>
+
+        <set name="roles" table="user_role" cascade="save-update">
+            <key column="uid"></key>
+            <many-to-many class="org.xiangkui.day03.Role" column="rid"></many-to-many>
+        </set>
+
+    </class>
+
 </hibernate-mapping>
