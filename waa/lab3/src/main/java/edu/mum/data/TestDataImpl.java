@@ -1,5 +1,8 @@
 package edu.mum.data;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+
 import java.util.ArrayList;
 import java.util.List;
 
