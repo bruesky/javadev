@@ -53,7 +53,7 @@ public class ProductController {
     	productService.save(product);
         return "ProductDetails";
     }
-    
+
     
     @RequestMapping(value="/listproducts")
     public String listProducts(@ModelAttribute("product") Product product) {
