@@ -23,14 +23,6 @@ import javax.servlet.ServletContext;
 @ComponentScan(basePackages = "edu.mum")
 @PropertySource("classpath:app.properties")
 public class AppCfg implements WebMvcConfigurer {
-    @Autowired
-    ApplicationContext applicationContext;
-    @Autowired
-    ServletContext servletContext;
-
-    @Value("${version}")
-    private String version;
-
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -57,5 +49,4 @@ public class AppCfg implements WebMvcConfigurer {
         bean.setValidationMessageSource(messageSource());
         return bean;
     }
-
 }
