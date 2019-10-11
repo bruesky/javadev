@@ -43,10 +43,12 @@ public class HomeController {
         try {
 
             // Get the file and save it somewhere
-            byte[] bytes = file.getBytes();
+//            byte[] bytes = file.getBytes();
             String p = ResourceUtils.getURL("classpath:").getPath();
             Path path = Paths.get(p+"static/" + file.getOriginalFilename());
-            Files.write(path, bytes);
+//            Files.write(path, bytes);
+            file.transferTo(path);
+
 
             redirectAttributes.addFlashAttribute("pic",
                     "/" + file.getOriginalFilename());
