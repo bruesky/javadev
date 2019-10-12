@@ -1,8 +1,17 @@
 package mum.edu.domain.dto;
 
 public class DomainError {
-	 
-    private String message;
+	private String field;
+
+	public String getField() {
+		return field;
+	}
+
+	public void setField(String field) {
+		this.field = field;
+	}
+
+	private String message;
  
     public DomainError() {}
 	    public DomainError(String message) {

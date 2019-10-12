@@ -3,16 +3,21 @@ package mum.edu.domain;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Employee  {
-	@NotNull
+	
+ 	@NotEmpty
  	private String firstName;
-	@NotNull
+ 	@NotEmpty
+	@Size(min = 3,max = 10)
  	private String lastName;
-	@NotNull
+ 	@NotEmpty
+	@Email(message = "email")
  	private String email;
 
 	public String getFirstName() {
