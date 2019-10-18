@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Add</title>
+</head>
+<body>
+
+<form th:object="${book}" th:action="@{/book}" method="post">
+    <p>Name: <input th:field="*{bookName}">
+        <label th:if="${#fields.hasErrors('bookName')}" th:errors="*{bookName}"></label>
+    </p>
+
+    <p>Category:
+        <select th:field="*{category.catId}">
+            <option th:each="category:${categories}" th:value="${category.catId}"th:text="${category.catName}"/>
+        </select>
+    </p>
+    <input type="submit" value="Add Book">
+</form>
+
+</body>
+</html>
